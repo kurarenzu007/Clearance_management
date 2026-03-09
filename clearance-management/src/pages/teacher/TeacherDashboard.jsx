@@ -3,6 +3,7 @@ import StatusBadge from '../../components/common/StatusBadge';
 import Modal from '../../components/common/Modal';
 import { MOCK_STUDENTS } from '../../utils/mockData';
 import { useAuth } from '../../context/AuthContext';
+import '../../styles/dashboard.css';
 
 export default function TeacherDashboard({ activeTab }) {
   const { user } = useAuth();

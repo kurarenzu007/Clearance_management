@@ -6,6 +6,7 @@ import {
 import StatusBadge from '../../components/common/StatusBadge';
 import Modal from '../../components/common/Modal';
 import { ADMIN_STATS, MOCK_ALL_STUDENTS, MOCK_TEACHERS, CLEARANCE_PERIOD } from '../../utils/mockData';
+import '../../styles/dashboard.css';
 
 const COLORS = ['#16a34a', '#FFD100', '#ea580c', '#dc2626', '#7c3aed'];
 

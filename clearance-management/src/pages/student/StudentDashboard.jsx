@@ -3,6 +3,7 @@ import { useAuth } from '../../context/AuthContext';
 import StatusBadge from '../../components/common/StatusBadge';
 import Modal from '../../components/common/Modal';
 import { MOCK_CLEARANCES } from '../../utils/mockData';
+import '../../styles/dashboard.css';
 
 const statusOrder = { rejected: 0, held: 1, pending: 2, cleared: 3 };
 

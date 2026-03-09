@@ -2,7 +2,8 @@ import { createContext, useContext, useState, useCallback } from 'react';
 
 const AuthContext = createContext(null);
 
-// Mock users for demo
+const STORAGE_KEY = 'scms_user';
+
 const MOCK_USERS = {
   student: {
     id: 'STU-2024-001',
@@ -33,8 +34,17 @@ const MOCK_USERS = {
   },
 };
 
+function getStoredUser() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch {
+    return null;
+  }
+}
+
 export function AuthProvider({ children }) {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(getStoredUser);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -42,12 +52,10 @@ export function AuthProvider({ children }) {
     setLoading(true);
     setError(null);
     try {
-      // Simulate API call
       await new Promise((resolve) => setTimeout(resolve, 900));
 
-      const { role, id, password } = credentials;
+      const { role, password } = credentials;
 
-      // Demo: accept any password for demo credentials
       if (password !== 'demo123') {
         throw new Error('Invalid credentials. Use password: demo123');
       }
@@ -55,6 +63,7 @@ export function AuthProvider({ children }) {
       const mockUser = MOCK_USERS[role];
       if (!mockUser) throw new Error('Invalid role selected');
 
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(mockUser));
       setUser(mockUser);
       return mockUser;
     } catch (err) {
@@ -66,6 +75,7 @@ export function AuthProvider({ children }) {
   }, []);
 
   const logout = useCallback(() => {
+    localStorage.removeItem(STORAGE_KEY);
     setUser(null);
     setError(null);
   }, []);
