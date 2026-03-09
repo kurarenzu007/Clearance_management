@@ -210,25 +210,23 @@ export default function AdminDashboard({ activeTab }) {
           isOpen={addUserModal}
           onClose={() => setAddUserModal(false)}
           title="Add New Student"
+          size="md"
           footer={
             <>
-              <button className="btn btn-ghost" onClick={() => setAddUserModal(false)}>Cancel</button>
-              <button className="btn btn-primary" onClick={() => setAddUserModal(false)}>Add Student</button>
+              <button className="btn btn-ghost btn-sm" onClick={() => setAddUserModal(false)}>Cancel</button>
+              <button className="btn btn-primary btn-sm" onClick={() => setAddUserModal(false)}>Add Student</button>
             </>
           }
         >
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-4)' }}>
-            {[
-              { label: 'Full Name', placeholder: 'e.g. Maria Santos' },
-              { label: 'Student ID', placeholder: 'e.g. STU-2024-015' },
-              { label: 'Email', placeholder: 'student@university.edu' },
-              { label: 'Course', placeholder: 'e.g. BS Computer Science' },
-            ].map((f) => (
-              <div key={f.label} className="form-group">
-                <label className="form-label">{f.label}</label>
-                <input className="form-input" placeholder={f.placeholder} />
-              </div>
-            ))}
+          <div className="modal-form-grid">
+            <div className="form-group form-group--full">
+              <label className="form-label">Full Name</label>
+              <input className="form-input" placeholder="e.g. Maria Santos" />
+            </div>
+            <div className="form-group">
+              <label className="form-label">Student ID</label>
+              <input className="form-input" placeholder="STU-2024-015" />
+            </div>
             <div className="form-group">
               <label className="form-label">Year Level</label>
               <select className="form-select form-input">
@@ -237,6 +235,14 @@ export default function AdminDashboard({ activeTab }) {
                 <option>3rd Year</option>
                 <option>4th Year</option>
               </select>
+            </div>
+            <div className="form-group form-group--full">
+              <label className="form-label">Email</label>
+              <input className="form-input" placeholder="student@university.edu" />
+            </div>
+            <div className="form-group form-group--full">
+              <label className="form-label">Course</label>
+              <input className="form-input" placeholder="e.g. BS Computer Science" />
             </div>
           </div>
         </Modal>
