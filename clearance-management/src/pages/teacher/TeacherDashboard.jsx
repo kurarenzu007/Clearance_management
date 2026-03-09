@@ -285,7 +285,7 @@ function StudentTable({ students, selected, onToggleSelect, onApprove, onReject,
                 {s.remark || <span style={{ color: 'var(--gray-300)' }}>—</span>}
               </td>
               <td>
-                {s.status !== 'cleared' && (
+                {s.status === 'pending' && (
                   <div className="student-row-actions">
                     <button
                       className="action-btn action-btn-approve tooltip"
@@ -315,6 +315,31 @@ function StudentTable({ students, selected, onToggleSelect, onApprove, onReject,
                       </svg>
                     </button>
                   </div>
+                )}
+                {s.status === 'held' && (
+                  <div className="student-row-actions">
+                    <button
+                      className="action-btn action-btn-approve tooltip"
+                      data-tip="Approve"
+                      onClick={() => onApprove(s)}
+                    >
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <polyline points="20 6 9 17 4 12"/>
+                      </svg>
+                    </button>
+                    <button
+                      className="action-btn action-btn-reject tooltip"
+                      data-tip="Reject"
+                      onClick={() => onReject(s)}
+                    >
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                      </svg>
+                    </button>
+                  </div>
+                )}
+                {s.status === 'rejected' && (
+                  <span style={{ color: 'var(--red)', fontSize: '0.875rem', fontWeight: 600 }}>✗ Rejected</span>
                 )}
                 {s.status === 'cleared' && (
                   <span style={{ color: 'var(--green)', fontSize: '0.875rem', fontWeight: 600 }}>✓ Done</span>
