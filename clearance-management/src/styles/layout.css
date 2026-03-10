@@ -283,14 +283,13 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background: var(--gray-50);
 }
 
 .main-content {
   flex: 1;
   padding: var(--space-8) var(--space-8);
-  max-width: var(--content-max);
   width: 100%;
-  margin: 0 auto;
 }
 
 /* Mobile sidebar overlay */
